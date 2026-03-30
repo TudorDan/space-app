@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './app/Navbar';
 import HomePage from './app/HomePage';
 import SearchPage from './app/SearchPage';
+import PlanetPage from './app/PlanetPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/planets" element={<PlanetPage />} />
       </Routes>
     </BrowserRouter>
   );

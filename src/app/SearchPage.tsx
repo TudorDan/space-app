@@ -21,7 +21,9 @@ const SearchPage = () => {
   const [hasSearched, setHasSearched] = useState(false); // Track if user has searched
 
   const ITEMS_PER_PAGE = 20;
-  const API_BASE = 'http://localhost:5001/api/NasaImages/search';
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = `${API_BASE_URL}/api/NasaImages/search`;
 
   // Fetch images from API
   const fetchImages = useCallback(async (searchQuery: string, pageNum: number, append = false) => {
@@ -39,7 +41,7 @@ const SearchPage = () => {
       }
 
       const data = await response.json();
-      
+
       // Handle different response formats (array or wrapped object)
       let imageArray: SpaceImage[] = [];
       if (Array.isArray(data)) {
@@ -52,7 +54,7 @@ const SearchPage = () => {
       // Use API's returned count or array length to check for more
       const returnedCount = data.returned ?? imageArray.length;
       setHasMore(returnedCount === ITEMS_PER_PAGE);
-      
+
       // Append or replace images
       setImages(prev => append ? [...prev, ...imageArray] : imageArray);
     } catch (err) {

@@ -20,7 +20,8 @@ interface SatelliteDto {
   description?: string;
 }
 
-const API_BASE = 'http://localhost:5001/api/Planets';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = `${API_BASE_URL}/api/Planets`;
 
 const PlanetPage = () => {
   const [planets, setPlanets] = useState<PlanetDto[]>([]);
@@ -166,9 +167,8 @@ const PlanetPage = () => {
                 {planet.description && (
                   <div className="planet-page-desc-wrapper">
                     <p
-                      className={`planet-page-card-desc ${
-                        isDescOpen ? 'planet-page-card-desc-expanded' : ''
-                      }`}
+                      className={`planet-page-card-desc ${isDescOpen ? 'planet-page-card-desc-expanded' : ''
+                        }`}
                     >
                       {planet.description}
                     </p>
